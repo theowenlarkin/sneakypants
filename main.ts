@@ -380,6 +380,7 @@ c c b b b b b b b b b b d c b b e 3 b 3 3 b 3 3 b 3 3 f e e e e b b c d b b b b 
 `, SpriteKind.Player)
     house_1.setPosition(46, 40)
     door_1.setPosition(-20, -20)
+    granny.setPosition(-20, -20)
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (crouched == false) {
@@ -430,6 +431,7 @@ let hidden = false
 let crouched = false
 let house_1: Sprite = null
 let fountain: Sprite = null
+let granny: Sprite = null
 let door_1: Sprite = null
 let sneakypants: Sprite = null
 sneakypants = sprites.create(img`
@@ -495,8 +497,7 @@ e e . . . . . . . . . . . . . .
 e e . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
 door_1.setPosition(0, 0)
-enterStreet()
-let granny = sprites.create(img`
+granny = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . 1 . . . . . . . . . . 
 . . . . 1 1 1 1 1 1 1 1 . . . . 
@@ -521,8 +522,44 @@ let granny = sprites.create(img`
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-`, SpriteKind.Player)
+`, SpriteKind.Enemy)
 granny.setPosition(-20, -20)
+let bench = sprites.create(img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+`, SpriteKind.Player)
+bench.setPosition(95, 135)
+enterStreet()
 forever(function () {
     if (sneakypants.overlapsWith(door_1)) {
         enterStreet()
@@ -557,6 +594,53 @@ forever(function () {
         fountain.setPosition(-20, -20)
         granny.setPosition(207, 45)
         door_1.setPosition(6, 200)
+    }
+    if (sneakypants.overlapsWith(fountain) && controller.A.isPressed()) {
+        if (hidden == false) {
+            hidden = true
+            fountain.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . 1 9 9 9 9 9 9 9 1 . . . . 
+. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
+. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 5 5 1 1 1 1 1 9 9 1 . . . 
+. . 1 5 5 5 5 9 9 9 9 9 1 . . . 
+. . . 1 5 5 5 5 9 9 9 1 . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+            sneakypants.setFlag(SpriteFlag.Invisible, true)
+            pause(200)
+        } else {
+            hidden = false
+            fountain.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . 1 9 9 9 9 9 9 9 1 . . . . 
+. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
+. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
+. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
+. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
+. . . 1 9 9 9 9 9 9 9 1 . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+            sneakypants.setFlag(SpriteFlag.Invisible, false)
+            pause(200)
+        }
     }
     if (sneakypants.overlapsWith(fountain) && controller.A.isPressed()) {
         if (hidden == false) {
