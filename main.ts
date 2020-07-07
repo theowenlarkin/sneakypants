@@ -287,14 +287,14 @@ e e e e e e e e e e e e f f f f
 }
 function enterStreet () {
     tiles.setTilemap(tiles.createTilemap(
-            hex`10001000040404040404040404040404040404050404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040402060606060304040404040404040404070c0c0c0c0b0404040404040404040408090909090a040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404`,
+            hex`10001000040404040404040404040404040404050404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404041b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b04040404040404040404040404040404040404040402060606060304040404040404040404070c0c0c0c0b0404040404040404040408090909090a040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404`,
             img`
 . . . . . . . . . . . . . . . . 
 . 2 2 2 2 . . . . . . . . . . . 
 . 2 2 2 2 . . . . . . . . . . . 
 . 2 . . 2 . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . 2 . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . 2 . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -306,7 +306,7 @@ function enterStreet () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.castle.tileGrass2,sprites.castle.tilePath1,sprites.castle.tilePath3,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tilePath2,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath9,sprites.castle.tilePath6,sprites.castle.tilePath5,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14],
+            [myTiles.tile0,sprites.castle.tileGrass2,sprites.castle.tilePath1,sprites.castle.tilePath3,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tilePath2,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath9,sprites.castle.tilePath6,sprites.castle.tilePath5,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,sprites.vehicle.roadHorizontal],
             TileScale.Sixteen
         ))
     fountain = sprites.create(img`
@@ -379,8 +379,9 @@ c c b b b b b b b b b b d c b b e 3 b 3 3 b 3 3 b 3 3 f e e e e b b c d b b b b 
 . . . . . . b c c c b b b c b b e 3 b 3 3 b 3 3 b 3 3 b 3 3 b e b b c b b b c c c b . . . . . . 
 `, SpriteKind.Player)
     house_1.setPosition(46, 40)
-    door_1.setPosition(-20, -20)
     granny.setPosition(-20, -20)
+    door_1.setPosition(-20, -20)
+    bench.setPosition(125, 95)
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (crouched == false) {
@@ -431,6 +432,7 @@ let hidden = false
 let crouched = false
 let house_1: Sprite = null
 let fountain: Sprite = null
+let bench: Sprite = null
 let granny: Sprite = null
 let door_1: Sprite = null
 let sneakypants: Sprite = null
@@ -455,14 +457,14 @@ sneakypants = sprites.create(img`
 controller.moveSprite(sneakypants, 100, 100)
 sneakypants.setPosition(76, 250)
 tiles.setTilemap(tiles.createTilemap(
-            hex`10001000040404040404040404040404040404050404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040402060606060304040404040404040404070c0c0c0c0b0404040404040404040408090909090a040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404`,
+            hex`10001000040404040404040404040404040404050404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404041b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b04040404040404040404040404040404040404040402060606060304040404040404040404070c0c0c0c0b0404040404040404040408090909090a040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404`,
             img`
 . . . . . . . . . . . . . . . . 
 . 2 2 2 2 . . . . . . . . . . . 
 . 2 2 2 2 . . . . . . . . . . . 
 . 2 . . 2 . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . 2 . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . 2 . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -474,7 +476,7 @@ tiles.setTilemap(tiles.createTilemap(
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.castle.tileGrass2,sprites.castle.tilePath1,sprites.castle.tilePath3,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tilePath2,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath9,sprites.castle.tilePath6,sprites.castle.tilePath5,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14],
+            [myTiles.tile0,sprites.castle.tileGrass2,sprites.castle.tilePath1,sprites.castle.tilePath3,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tilePath2,sprites.castle.tilePath4,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath9,sprites.castle.tilePath6,sprites.castle.tilePath5,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,sprites.vehicle.roadHorizontal],
             TileScale.Sixteen
         ))
 scene.cameraFollowSprite(sneakypants)
@@ -524,7 +526,7 @@ granny = sprites.create(img`
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `, SpriteKind.Enemy)
 granny.setPosition(-20, -20)
-let bench = sprites.create(img`
+bench = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -534,18 +536,18 @@ let bench = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -558,7 +560,26 @@ let bench = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-bench.setPosition(95, 135)
+bench.setPosition(125, 95)
+let grannyOverlap = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 3 . . . . . . . . 
+. . . . . . . 3 . . . . . . . . 
+. . . . . . . 3 . . . . . . . . 
+. . . . . . . 3 3 . . . . . . . 
+. . . . . . . 3 3 . . . . . . . 
+. . . . . . . 3 3 . . . . . . . 
+. . . . . . . 3 3 . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . . 3 . . . . . . . . 
+`, SpriteKind.Player)
+grannyOverlap.setPosition(-20, -20)
 enterStreet()
 forever(function () {
     if (sneakypants.overlapsWith(door_1)) {
@@ -592,12 +613,16 @@ forever(function () {
         sneakypants.setPosition(75, 250)
         house_1.setPosition(-20, -20)
         fountain.setPosition(-20, -20)
+        bench.setPosition(-20, -20)
         granny.setPosition(207, 45)
         door_1.setPosition(6, 200)
+        grannyOverlap.setPosition(195, 43)
+        grannyOverlap.setFlag(SpriteFlag.Invisible, true)
     }
     if (sneakypants.overlapsWith(fountain) && controller.A.isPressed()) {
         if (hidden == false) {
             hidden = true
+            controller.moveSprite(sneakypants, 0, 0)
             fountain.setImage(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -620,6 +645,7 @@ forever(function () {
             pause(200)
         } else {
             hidden = false
+            controller.moveSprite(sneakypants, 100, 100)
             fountain.setImage(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -642,48 +668,80 @@ forever(function () {
             pause(200)
         }
     }
-    if (sneakypants.overlapsWith(fountain) && controller.A.isPressed()) {
+    if (sneakypants.overlapsWith(bench) && controller.A.isPressed()) {
         if (hidden == false) {
             hidden = true
-            fountain.setImage(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . 1 1 1 1 1 1 1 . . . . . 
-. . . 1 9 9 9 9 9 9 9 1 . . . . 
-. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
-. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 5 5 1 1 1 1 1 9 9 1 . . . 
-. . 1 5 5 5 5 9 9 9 9 9 1 . . . 
-. . . 1 5 5 5 5 9 9 9 1 . . . . 
-. . . . 1 1 1 1 1 1 1 . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+            bench.setImage(img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 5 5 5 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 1 2 5 5 5 5 5 2 1 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f 1 1 5 5 5 5 5 1 1 . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 1 f 1 d d d 1 f 1 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 f f 1 f 1 d 1 f 1 f f 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f f f 1 f 1 f 1 f f f f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 1 1 f 1 1 1 f 1 1 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 1 1 f 1 f 1 1 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 f 1 1 1 1 1 f 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 f f 1 1 1 f f 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . f f . 1 . f f . . f f . . . . . . . . . 
+. . . . . . . . . . . f f f . . . f f f . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `)
             sneakypants.setFlag(SpriteFlag.Invisible, true)
             pause(200)
         } else {
             hidden = false
-            fountain.setImage(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . 1 1 1 1 1 1 1 . . . . . 
-. . . 1 9 9 9 9 9 9 9 1 . . . . 
-. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
-. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 9 9 1 9 9 9 1 9 9 1 . . . 
-. . 1 9 9 1 1 1 1 1 9 9 1 . . . 
-. . 1 9 9 9 9 9 9 9 9 9 1 . . . 
-. . . 1 9 9 9 9 9 9 9 1 . . . . 
-. . . . 1 1 1 1 1 1 1 . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+            bench.setImage(img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . . . . . . 
+. . . . . . . . . f f . . . . . . . . . . f f . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `)
             sneakypants.setFlag(SpriteFlag.Invisible, false)
             pause(200)
